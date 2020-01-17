@@ -2,13 +2,8 @@ cls
 @echo off
 title SYSTEM
 
-::=================
-:: If you want added security, you can change "Locker" and "k_wrd" to other words
-:: EX : path_folder=word1
-::      path_kwrd=%path_folder%/word2.txt
-::=================
 set path_folder=Locker
-set path_kwrd=%path_folder%/k_wrd.txt
+set path_kwrd=%path_folder%/key.txt
 set lock_on=false
 
 :: Check the state of the locker
@@ -33,7 +28,7 @@ for /f %%i in ("%path_kwrd%") do (
   )
 )
 
-echo Would you want to lock your folder ? [Y/N]
+echo Would you want to hide your folder ? [Y/N]
 set /p "answer=>"
 if %answer%==y set answer=Y
 if %answer%==Y (
@@ -44,7 +39,6 @@ exit
 
 :: Check the key to unlock the folder
 :check_pwd
-echo Enter the key to unlock the locker.
 set /p "alpha=>"
 if %alpha%==%k_wrd% (
     attrib -h -s %path_folder%
